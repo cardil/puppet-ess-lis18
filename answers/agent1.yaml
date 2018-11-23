@@ -1,11 +1,11 @@
+fqdn: agent1.vagrant.home
 installer:
   mode: Agent
   type: pc5x
   puppet.conf:
     agent:
-      server: master.home
+      server: master.vagrant.home
       environment: vagrant
-fqdn: agent.home
 csr-attributes:
   pp_project: acme
   pp_role: acme::role::webserver

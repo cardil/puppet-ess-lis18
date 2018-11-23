@@ -36,8 +36,17 @@ define webserver::vhost(
     }
   }
 
+  $empty = ''
+  $portx = "${port}${empty}"
+
+  if $port != 80 and ! defined(Webserver::Private::Listen[$portx]) {
+    webserver::private::listen { $portx: }
+    Webserver::Private::Listen[$portx] -> File["vhost-${servername}"]
+  }
+
   file { "${webserver::params::vhosts_dir}/vhost-${servername}.conf":
     ensure  => $ensurex,
+    alias   => "vhost-${servername}",
     content => epp('webserver/vhost.epp', $ctx),
     notify  => Service[$webserver::params::servicename],
     require => [

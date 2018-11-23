@@ -13,11 +13,19 @@ package { 'librarian-puppet':
   provider => 'puppet_gem',
 }
 
+file { "${::settings::confdir}/autosign.conf":
+  ensure  => 'file',
+  mode    => '0640',
+  owner   => 'puppet',
+  group   => 'puppet',
+  content => '*.vagrant.home',
+}
+
 exec { 'librarian-puppet install':
-  command => 'librarian-puppet install --verbose && puppet module list --tree --environment vagrant | md5sum > Puppetfile.md5',
+  command => 'librarian-puppet install --verbose && md5sum Puppetfile.lock > /tmp/Puppetfile.lock.md5',
   cwd     => '/vagrant',
   path    => '/opt/puppetlabs/puppet/bin:/usr/bin',
-  unless  => 'md5sum -c Puppetfile.md5',
+  unless  => 'md5sum -c /tmp/Puppetfile.lock.md5',
   require => [
     File["${::settings::codedir}/environments/vagrant"],
     Package['librarian-puppet'],

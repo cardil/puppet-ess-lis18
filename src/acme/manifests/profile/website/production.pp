@@ -6,6 +6,6 @@ class acme::profile::website::production {
   }
   file { '/var/www/www.acme.com/index.html':
     ensure  => 'file',
-    content => '<h1 style="color:red">ACME</h1>',
+    content => '<h1 style="color:red">Production ACME</h1>',
   }
 }
