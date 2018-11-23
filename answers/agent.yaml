@@ -1,0 +1,15 @@
+installer:
+  mode: Agent
+  type: pc5x
+  puppet.conf:
+    agent:
+      server: master.home
+      environment: vagrant
+fqdn: agent.home
+csr-attributes:
+  pp_project: acme
+  pp_role: acme::role::webserver
+  pp_zone: management
+  pp_environment: vagrant
+  pp_datacenter: dc1
+  pp_region: public

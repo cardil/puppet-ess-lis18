@@ -1,0 +1,24 @@
+installer:
+  mode: Server
+  type: pc5x
+  puppetserver:
+    jvm:
+      memory:
+        heap:
+          min: 1g
+          max: 1g
+      args:
+       - -XX:+UseConcMarkSweepGC
+       - -XX:+CMSParallelRemarkEnabled
+  puppet.conf:
+    agent:
+      server: master.home
+      environment: vagrant
+fqdn: master.home
+csr-attributes:
+  pp_project: acme
+  pp_role: acme::role::puppetserver
+  pp_zone: management
+  pp_environment: vagrant
+  pp_datacenter: dc1
+  pp_region: public

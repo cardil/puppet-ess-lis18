@@ -2,11 +2,13 @@
   "name": "ksuszynski-acme",
   "version": "0.1.0",
   "author": "ksuszynski",
-  "summary": "",
   "license": "Apache-2.0",
-  "source": "",
+  "source": "https://github.com/cardil/puppet-ess-lis18",
   "dependencies": [
-    { "name": "ksuszynski/webserver", "version_requirement": ">= 0.1.0 < 1.0.0" }
+    {
+      "name": "ksuszynski/webserver",
+      "version_requirement": ">= 0.1.0 < 1.0.0"
+    }
   ],
   "operatingsystem_support": [
     {
